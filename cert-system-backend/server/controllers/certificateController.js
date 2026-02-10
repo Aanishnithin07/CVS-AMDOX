@@ -70,4 +70,35 @@ const getCertificateById = async (req, res) => {
     }
 };
 
-module.exports = { uploadCertificates, getCertificateById };
+// @desc    Get all certificates (Admin)
+// @route   GET /api/certificates
+// @access  Private (Admin)
+const getAllCertificates = async (req, res) => {
+    try {
+        const certificates = await Certificate.find({}).sort({ _id: -1 });
+        res.json(certificates);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+// @desc    Revoke a certificate
+// @route   PUT /api/certificates/:id/revoke
+// @access  Private (Admin)
+const revokeCertificate = async (req, res) => {
+    try {
+        const certificate = await Certificate.findOne({ certificateId: req.params.id });
+
+        if (certificate) {
+            certificate.isRevoked = true;
+            await certificate.save();
+            res.json({ message: 'Certificate revoked successfully' });
+        } else {
+            res.status(404).json({ message: 'Certificate not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+module.exports = { uploadCertificates, getCertificateById, getAllCertificates, revokeCertificate };

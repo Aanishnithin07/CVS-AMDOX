@@ -26,43 +26,54 @@ const Login = () => {
         }
     };
 
+
     return (
-        <div className="flex justify-center items-center min-h-[calc(100vh-200px)]">
+        <div className="flex justify-center items-center min-h-[calc(100vh-140px)]">
             <motion.div
-                className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md border border-gray-100"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3 }}
+                className="bg-white p-10 rounded-2xl shadow-xl w-full max-w-md border border-gray-100 relative overflow-hidden"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
             >
-                <div className="flex justify-center mb-6">
-                    <div className="bg-blue-100 p-3 rounded-full">
-                        <Lock className="h-8 w-8 text-blue-600" />
+                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary-500 to-secondary-500"></div>
+
+                <div className="flex justify-center mb-8">
+                    <div className="bg-primary-50 p-4 rounded-2xl shadow-inner">
+                        <Lock className="h-8 w-8 text-primary-600" />
                     </div>
                 </div>
-                <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Admin Login</h2>
+
+                <h2 className="text-3xl font-bold text-center text-gray-800 mb-2">Welcome Back</h2>
+                <p className="text-center text-gray-500 mb-8">Sign in to the admin dashboard</p>
 
                 {error && (
-                    <div className="bg-red-50 text-red-600 p-3 rounded-lg mb-4 text-sm text-center">
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        className="bg-red-50 text-red-600 p-4 rounded-xl mb-6 text-sm text-center border border-red-100"
+                    >
                         {error}
-                    </div>
+                    </motion.div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
                         <input
                             type="email"
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                            className="w-full px-5 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-100 focus:border-primary-500 transition-all outline-none"
+                            placeholder="admin@example.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
                         <input
                             type="password"
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                            className="w-full px-5 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-100 focus:border-primary-500 transition-all outline-none"
+                            placeholder="••••••••"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
@@ -70,7 +81,7 @@ const Login = () => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300"
+                        className="w-full bg-gray-900 text-white py-3.5 rounded-xl font-semibold hover:bg-black transition duration-300 shadow-lg transform active:scale-[0.98]"
                     >
                         Sign In
                     </button>

@@ -10,7 +10,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 function App() {
     return (
         <Router>
-            <div className="flex flex-col min-h-screen">
+            <div className="flex flex-col min-h-screen bg-gray-50/50">
                 <Header />
                 <main className="flex-grow container mx-auto px-4 py-8">
                     <Routes>

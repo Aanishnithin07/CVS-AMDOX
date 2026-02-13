@@ -12,30 +12,39 @@ const Header = () => {
     };
 
     return (
-        <header className="bg-white shadow-sm">
-            <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-                <Link to="/" className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors">
-                    <ShieldCheck size={32} />
-                    <span className="text-xl font-bold">CertVerifier</span>
+        <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+            <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+                <Link to="/" className="flex items-center space-x-2 group">
+                    <div className="bg-primary-50 p-2 rounded-lg group-hover:bg-primary-100 transition-colors">
+                        <ShieldCheck size={28} className="text-primary-600" />
+                    </div>
+                    <span className="text-xl font-bold bg-gradient-to-r from-primary-700 to-primary-500 bg-clip-text text-transparent">
+                        CertVerifier
+                    </span>
                 </Link>
                 <nav>
                     {token ? (
-                        <div className="flex items-center space-x-4">
-                            <Link to="/admin" className="text-gray-600 hover:text-blue-600 font-medium">Dashboard</Link>
+                        <div className="flex items-center space-x-6">
+                            <Link
+                                to="/admin"
+                                className="text-sm font-medium text-gray-600 hover:text-primary-600 transition-colors"
+                            >
+                                Dashboard
+                            </Link>
                             <button
                                 onClick={handleLogout}
-                                className="flex items-center space-x-1 text-red-500 hover:text-red-700 font-medium"
+                                className="flex items-center space-x-1.5 px-4 py-2 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
                             >
-                                <LogOut size={18} />
+                                <LogOut size={16} />
                                 <span>Logout</span>
                             </button>
                         </div>
                     ) : (
                         <Link
                             to="/login"
-                            className="flex items-center space-x-1 text-gray-600 hover:text-blue-600 font-medium"
+                            className="inline-flex items-center space-x-1.5 px-5 py-2.5 rounded-xl text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 shadow-lg shadow-primary-500/20 transition-all hover:scale-[1.02]"
                         >
-                            <LogIn size={18} />
+                            <LogIn size={16} />
                             <span>Admin Login</span>
                         </Link>
                     )}
